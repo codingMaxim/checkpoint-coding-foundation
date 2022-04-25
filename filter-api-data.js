@@ -1,3 +1,14 @@
 function filterApiData(apiData, mandatoryKeys) {
-  // Add you solution here
+  if (mandatoryKeys.length === 1) {
+    const filtered = apiData.filter(
+      (filterByKey) => filterByKey[mandatoryKeys]
+    );
+    return filtered;
+  }
+  if (mandatoryKeys.length > 1) {
+    const filtered = apiData.filter(
+      (filterByKey) => filterByKey[mandatoryKeys[0]]
+    );
+    return filtered;
+  }
 }
