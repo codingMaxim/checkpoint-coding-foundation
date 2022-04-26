@@ -1,14 +1,20 @@
-function filterApiData(apiData, mandatoryKeys) {
-  if (mandatoryKeys.length === 1) {
-    const filtered = apiData.filter(
-      (filterByKey) => filterByKey[mandatoryKeys]
-    );
-    return filtered;
+function filterApiData(data, keys) {
+  let result = [];
+
+  for (let i = 0; i < data.length; i++) {
+    const obj = data[i];
+    let containsAllKeys = true;
+
+    for (let x = 0; x < keys.length; x++) {
+      if (!Object.keys(obj).includes(keys[x])) {
+        containsAllKeys = false;
+      }
+    }
+
+    if (containsAllKeys) {
+      result.push(obj);
+    }
   }
-  if (mandatoryKeys.length > 1) {
-    const filtered = apiData.filter(
-      (filterByKey) => filterByKey[mandatoryKeys[0]]
-    );
-    return filtered;
-  }
+
+  return result;
 }
